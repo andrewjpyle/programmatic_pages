@@ -1,0 +1,51 @@
+zip,city,state,county
+00501,Holtsville,NY,Suffolk
+10001,New York,NY,New York
+10013,New York,NY,New York
+90210,Beverly Hills,CA,Los Angeles
+94110,San Francisco,CA,San Francisco
+60601,Chicago,IL,Cook
+02108,Boston,MA,Suffolk
+30303,Atlanta,GA,Fulton
+33101,Miami,FL,Miami-Dade
+75201,Dallas,TX,Dallas
+77001,Houston,TX,Harris
+80202,Denver,CO,Denver
+98101,Seattle,WA,King
+97201,Portland,OR,Multnomah
+19103,Philadelphia,PA,Philadelphia
+20001,Washington,DC,District of Columbia
+21201,Baltimore,MD,Baltimore City
+22201,Arlington,VA,Arlington
+27601,Raleigh,NC,Wake
+28202,Charlotte,NC,Mecklenburg
+32801,Orlando,FL,Orange
+35203,Birmingham,AL,Jefferson
+37201,Nashville,TN,Davidson
+40202,Louisville,KY,Jefferson
+43215,Columbus,OH,Franklin
+44113,Cleveland,OH,Cuyahoga
+46202,Indianapolis,IN,Marion
+48201,Detroit,MI,Wayne
+53202,Milwaukee,WI,Milwaukee
+55402,Minneapolis,MN,Hennepin
+63101,Saint Louis,MO,Saint Louis City
+64108,Kansas City,MO,Jackson
+66101,Kansas City,KS,Wyandotte
+67202,Wichita,KS,Sedgwick
+68102,Omaha,NE,Douglas
+70112,New Orleans,LA,Orleans
+73102,Oklahoma City,OK,Oklahoma
+78205,San Antonio,TX,Bexar
+78701,Austin,TX,Travis
+84101,Salt Lake City,UT,Salt Lake
+85003,Phoenix,AZ,Maricopa
+87102,Albuquerque,NM,Bernalillo
+89101,Las Vegas,NV,Clark
+92101,San Diego,CA,San Diego
+95814,Sacramento,CA,Sacramento
+96813,Honolulu,HI,Honolulu
+99501,Anchorage,AK,Anchorage
+06511,New Haven,CT,New Haven
+04101,Portland,ME,Cumberland
+03301,Concord,NH,Merrimack
