@@ -24,7 +24,6 @@ from programmatic_pages.adapter import PageAdapter
 from programmatic_pages.builder import build
 from programmatic_pages.manifest import write_manifest
 
-
 DEFAULT_ADAPTER = "programmatic_pages.adapters.DefaultPageAdapter"
 DEFAULT_TEMPLATE = "programmatic_pages/default.html"
 DEFAULT_OUTPUT_BASE = "~/programmatic_pages/build"

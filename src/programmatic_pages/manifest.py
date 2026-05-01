@@ -2,7 +2,7 @@
 
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 
@@ -25,7 +25,7 @@ def write_manifest(
         "pages_built": pages_built,
         "pages_errors": pages_errors,
         "build_time_seconds": round(build_time_seconds, 1),
-        "built_at": datetime.utcnow().isoformat() + "Z",
+        "built_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "entity_type_filter": entity_type_filter,
     }
     if extra:
