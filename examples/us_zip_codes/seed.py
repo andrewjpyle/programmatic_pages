@@ -68,7 +68,7 @@ def main() -> None:
                     f"<tr><th>City</th><td>{city}</td></tr>"
                     f"<tr><th>State</th><td>{state}</td></tr>"
                     + (f"<tr><th>County</th><td>{county}</td></tr>" if county else "")
-                    + f"</table>"
+                    + "</table>"
                 ),
                 schema_type="Place",
                 schema_extras={
