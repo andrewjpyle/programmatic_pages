@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ meta_description }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ meta_description }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{ site_name }}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ meta_description }}">
+
+  <script type="application/ld+json">{{ schema_json|safe }}</script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      line-height: 1.6;
+      color: #1a1a2e;
+      background: #fafafa;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      padding: 1rem 0;
+      border-bottom: 2px solid #e5e7eb;
+      margin-bottom: 1.5rem;
+    }
+    .site-header a { color: #1a1a2e; font-weight: 700; font-size: 1.25rem; }
+
+    .breadcrumbs {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+    .breadcrumbs a { color: #6b7280; }
+    .breadcrumbs span { margin: 0 0.4rem; }
+
+    main { margin-bottom: 3rem; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; color: #1a1a2e; }
+    h2 { font-size: 1.4rem; margin: 1.5rem 0 0.75rem; color: #1f2937; }
+    h3 { font-size: 1.15rem; margin: 1.25rem 0 0.5rem; color: #374151; }
+    p { margin-bottom: 1rem; }
+    ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.25rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: 0.5rem 0.75rem; border: 1px solid #e5e7eb; text-align: left; }
+    th { background: #f3f4f6; font-weight: 600; }
+    article section { margin-bottom: 1.5rem; }
+    strong { font-weight: 600; }
+
+    .site-footer {
+      padding: 1.5rem 0;
+      border-top: 2px solid #e5e7eb;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+    .site-footer a { color: #6b7280; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      body { padding: 0 0.75rem; }
+      table { font-size: 0.85rem; }
+    }
+  </style>
+
+  {% if ga_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ ga_id }}');
+  </script>
+  {% endif %}
+</head>
+<body>
+  <header class="site-header">
+    <a href="{{ base_url }}">{{ site_name }}</a>
+  </header>
+
+  {% if breadcrumb_chain %}
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    {% for crumb in breadcrumb_chain %}
+      {% if crumb.url %}<a href="{% if crumb.url|slice:':1' == '/' %}{{ base_url }}{{ crumb.url }}{% else %}{{ crumb.url }}{% endif %}">{{ crumb.label }}</a>{% else %}<span>{{ crumb.label }}</span>{% endif %}
+      {% if not forloop.last %}<span>›</span>{% endif %}
+    {% endfor %}
+  </nav>
+  {% endif %}
+
+  <main>
+    <h1>{{ h1 }}</h1>
+    {{ body_html|safe }}
+  </main>
+
+  <footer class="site-footer">
+    <a href="{{ base_url }}">Home</a>
+    <p style="margin-top: 0.75rem;">&copy; {{ year }} {{ site_name }}</p>
+  </footer>
+</body>
+</html>
