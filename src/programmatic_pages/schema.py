@@ -38,7 +38,7 @@ def build_schema_json(page: RenderablePage, project: ProjectConfig) -> str:
     if page.breadcrumb_chain:
         blocks.append(_breadcrumb_block(page, project))
 
-    return json.dumps(blocks, ensure_ascii=False)
+    return json.dumps(blocks, ensure_ascii=False).translate(_SCRIPT_SAFE)
 
 
 def _canonical_url(page: RenderablePage, project: ProjectConfig) -> str:
