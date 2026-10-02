@@ -1,4 +1,4 @@
-"""programmatic_pages — generate SEO-quality static pages from a Django queryset."""
+"""programmatic_pages: generate SEO-quality static pages from a Django queryset."""
 
 from programmatic_pages.adapter import (
     BreadcrumbItem,

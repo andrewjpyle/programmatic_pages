@@ -1,11 +1,14 @@
 # Examples
 
-Reference demos that ship with `programmatic_pages`.
+Runnable demos for `programmatic_pages`. Both use SQLite and need nothing but `pip install -e .`
+from the repo root.
 
-## Planned
-
-- **`us_zip_codes/`** — ~42K page demo built from a USPS/Census ZIP code fixture. Demonstrates throughput (the headline metric of this package). The README walks through install → load fixture → build → serve in 5 minutes. *Not yet built.*
+| Demo | Shows | Data |
+|---|---|---|
+| [`parks_demo/`](parks_demo/) | Your own model plus a custom adapter, a per-record eligibility rule, and a checker that parses every page's JSON-LD and canonical | 7 fictional parks (SAMPLE DATA) |
+| [`us_zip_codes/`](us_zip_codes/) | The bundled `Page` model with no adapter code | 50 real ZIP codes (public reference data) |
 
 ## Adding your own
 
-If you've got a fun demo (≤100K rows, public-domain data, demonstrates a feature this package is good at), open an issue or PR.
+A demo should run in a few commands, use public-domain or clearly fictional data, and show one
+feature well. Open an issue or a PR.

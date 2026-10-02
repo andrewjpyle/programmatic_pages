@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to file a bug. Please fill in as much as you can — half of bug reports become unanswerable when there's no reproduction.
+        Thanks for taking the time to file a bug. Please fill in as much as you can. Half of bug reports become unanswerable when there's no reproduction.
 
   - type: textarea
     id: what-happened

@@ -1,4 +1,4 @@
-"""Adapter contract — implement against your own page model, or use the default."""
+"""Adapter contract. Implement against your own page model, or use the default."""
 
 from abc import ABC, abstractmethod
 from collections.abc import Iterable

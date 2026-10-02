@@ -53,7 +53,7 @@ def main() -> None:
                 project_key="us_zip_codes",
                 entity_type="zip-codes",
                 url_path=f"zip/{zip_code}/",
-                title=f"ZIP {zip_code} — {city}, {state}",
+                title=f"ZIP {zip_code}: {city}, {state}",
                 meta_description=(
                     f"ZIP code {zip_code} covers {city}, {state}. "
                     f"Demographic and locality data for ZCTA {zip_code}."

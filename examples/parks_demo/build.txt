@@ -1,0 +1,12 @@
+
+Project: Example County Parks (parks)
+Base URL: https://parks.example.com
+Output: ./build
+  [5] built=5 errors=0 (2010 pages/s)
+
+==================================================
+  Built 5 pages (0 errors) in 0.0s
+  Output: ./build
+  Manifest: ./build/manifest.json
+  Rate: 1940 pages/s
+  Build ID: 1

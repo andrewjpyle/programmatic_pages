@@ -81,7 +81,7 @@ class Command(BaseCommand):
                 self.stdout.write("\nBreakdown:")
                 for label, count in sorted(breakdown.items(), key=lambda kv: -kv[1]):
                     self.stdout.write(f"  {label}: {count:,}")
-            self.stdout.write(self.style.WARNING("\nDRY RUN — no files written"))
+            self.stdout.write(self.style.WARNING("\nDRY RUN: no files written"))
             return
 
         # Resolve pages stream + apply limit

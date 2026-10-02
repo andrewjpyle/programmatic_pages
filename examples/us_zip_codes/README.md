@@ -2,7 +2,7 @@
 
 A working `programmatic_pages` demo. Builds a page-per-ZIP-code static site from a CSV.
 
-The bundled fixture is a small geographically-diverse sample (50 ZIPs across ~45 states). Instructions below show how to expand to the full ~33,000 US ZCTAs from public Census data — that's where the throughput claim earns its keep.
+The bundled fixture is a small geographically-diverse sample (50 ZIPs across ~45 states). Instructions below show how to expand to the full ~33,000 US ZCTAs from public Census data.
 
 ## Run the demo (50 pages, ~1 second)
 
@@ -10,8 +10,8 @@ From this directory:
 
 ```bash
 # 1. Make sure programmatic_pages is installed in your active env
-pip install programmatic_pages
-# (or: pip install -e ../.. if you're working from the repo)
+# (not on PyPI yet; install from the repo checkout)
+pip install -e ../..
 
 # 2. Migrate the demo's SQLite DB
 python manage.py migrate
@@ -25,21 +25,25 @@ python manage.py build_static_pages \
     --output-dir ./build
 ```
 
-You'll get output like:
+You'll get output like this:
 
 ```
 Project: US ZIP Code Atlas (us_zip_codes)
 Base URL: https://zip.example.com
 Output: ./build
+  [50] built=50 errors=0 (4386 pages/s)
+
 ==================================================
   Built 50 pages (0 errors) in 0.0s
   Output: ./build
   Manifest: ./build/manifest.json
-  Rate: ~3000 pages/s
+  Rate: 4353 pages/s
   Build ID: 1
 ```
 
-Open `./build/zip/10001/index.html` in a browser — fully static, fully indexable, with Schema.org JSON-LD for `Place` + a breadcrumb chain.
+(A real run on an Apple Silicon Mac. The rate depends on your machine and template.)
+
+Open `./build/zip/10001/index.html` in a browser: static HTML with Schema.org JSON-LD for `Place` + a breadcrumb chain.
 
 ## Serve it locally to check it out
 
@@ -73,15 +77,14 @@ python seed.py full_zips.csv
 python manage.py build_static_pages --project us_zip_codes --output-dir ./build
 ```
 
-On a recent Mac with `--concurrency 8` you should see 2,000+ pages/sec.
 
 ## What this demo demonstrates
 
 - **The bundled `Page` model + `DefaultPageAdapter` works without writing any adapter code.** Useful for quick prototypes and small-to-medium sites.
 - **`schema_extras` decorates the JSON-LD per page** with `PostalAddress` here.
-- **`entity_type` filtering and breakdowns** — try `python manage.py build_static_pages --project us_zip_codes --dry-run`.
-- **`PageBuild` audit log** — every run is recorded. Try a few builds, then `python manage.py shell -c "from programmatic_pages.models import PageBuild; [print(b) for b in PageBuild.objects.all()]"`.
+- **`entity_type` filtering and breakdowns**: try `python manage.py build_static_pages --project us_zip_codes --dry-run`.
+- **`PageBuild` audit log**: every run is recorded. Try a few builds, then `python manage.py shell -c "from programmatic_pages.models import PageBuild; [print(b) for b in PageBuild.objects.all()]"`.
 
 ## Next: write your own adapter
 
-For any real project you'll have your own Django model — say `Listing`, `Product`, `Profile` — and you don't want to migrate to ours. See the [adapter pattern walkthrough](../../README.md#the-adapter-pattern-when-you-have-your-own-model) in the main README.
+For any real project you'll have your own Django model, say `Listing`, `Product` or `Profile`, and you don't want to migrate to ours. The [parks demo](../parks_demo/) shows a custom model with its own adapter.
