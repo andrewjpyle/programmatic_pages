@@ -1,0 +1,14 @@
+{
+  "name": "hostile_after",
+  "command": [
+    "python",
+    "examples/hostile_record.py"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-02T01:28:40+00:00",
+  "commit": "8b5b666a6de8f29ef1df0fbb4314be9222a03fbc",
+  "line_count": 4,
+  "env_passed": [],
+  "note": "",
+  "output": "<meta name=\"description\" content=\"Has a &quot;quoted&quot; pond &amp; a dock.\">\n<script type=\"application/ld+json\">[{\"@context\": \"https://schema.org\", \"@type\": \"Park\", \"name\": \"Evil Park\\u003c/script\\u003e\\u003cscript\\u003ealert(\\\"pwned\\\")\\u003c/script\\u003e\", \"url\": \"https://parks.example.com/parks/evil/\", \"description\": \"Has a \\\"quoted\\\" pond \\u0026 a dock.\"}]</script>\nscript elements a browser would see: 1\n  application/ld+json: valid JSON, name == record name: True\n"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "parks_check",
+  "command": [
+    "python",
+    "check_build.py",
+    "./build"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-02T01:25:15+00:00",
+  "commit": "60fd4423edf8076423ccf42e5c2cffa0ab355bbb",
+  "line_count": 8,
+  "env_passed": [],
+  "note": "",
+  "output": "ok    /parks/cinder-ridge/  canonical == JSON-LD url, Park, 1 script\nok    /parks/fox-and-heron/  canonical == JSON-LD url, Park, 1 script\nok    /parks/maple-hollow/  canonical == JSON-LD url, Park, 1 script\nskip  /parks/north-annex/  (no page: not enough data)\nskip  /parks/pine-knob/  (no page: not enough data)\nok    /parks/quarry-lake/  canonical == JSON-LD url, Park, 1 script\nok    /parks/willow-bend/  canonical == JSON-LD url, Park, 1 script\n5 pages for 7 parks, 0 problems\n"
+}
