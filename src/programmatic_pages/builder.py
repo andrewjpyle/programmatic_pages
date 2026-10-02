@@ -4,7 +4,7 @@ import os
 import time
 from collections.abc import Callable, Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
@@ -30,7 +30,8 @@ def render_page(
     context = Context(
         {
             "title": page.title,
-            "meta_description": (page.meta_description or "").replace('"', "&quot;"),
+            # Escaped once, by template autoescaping. Pre-escaping here produced &amp;quot;.
+            "meta_description": page.meta_description or "",
             "canonical_url": canonical_url,
             "h1": page.h1 or page.title,
             "body_html": page.body_html or "",
@@ -47,9 +48,15 @@ def render_page(
 
 
 def write_page(output_dir: str, url_path: str, html: str) -> str:
-    """Write rendered HTML to filesystem at output_dir/url_path/index.html."""
+    """Write rendered HTML to filesystem at output_dir/url_path/index.html.
+
+    Raises ValueError if url_path would land outside output_dir (for example "../x/").
+    """
     clean = url_path.strip("/")
-    file_dir = os.path.join(output_dir, clean) if clean else output_dir
+    root = os.path.realpath(output_dir)
+    file_dir = os.path.realpath(os.path.join(root, clean)) if clean else root
+    if os.path.commonpath([root, file_dir]) != root:
+        raise ValueError(f"url_path {url_path!r} resolves outside the output directory")
     Path(file_dir).mkdir(parents=True, exist_ok=True)
     file_path = os.path.join(file_dir, "index.html")
     with open(file_path, "w", encoding="utf-8") as f:
@@ -62,6 +69,8 @@ class BuildResult:
     pages_built: int
     pages_errors: int
     elapsed_seconds: float
+    # One "url_path: reason" line per failed page, so a failure can be read, not just counted.
+    errors: list[str] = field(default_factory=list)
 
 
 def build(
@@ -80,11 +89,23 @@ def build(
     """
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-    pages_list = list(pages)
-    total = len(pages_list)
+    # One file per url_path. A second page with the same path would silently overwrite the
+    # first and still be counted as built, so it is reported as an error instead.
+    pages_list: list[RenderablePage] = []
+    error_lines: list[str] = []
+    seen: set[str] = set()
+    for page in pages:
+        key = page.url_path.strip("/")
+        if key in seen:
+            error_lines.append(f"{page.url_path}: duplicate url_path, page skipped")
+            continue
+        seen.add(key)
+        pages_list.append(page)
+
+    total = len(pages_list) + len(error_lines)
     t_start = time.time()
     built = 0
-    errors = 0
+    errors = len(error_lines)
 
     def _build_one(page: RenderablePage) -> tuple[str, str]:
         try:
@@ -97,11 +118,12 @@ def build(
     with ThreadPoolExecutor(max_workers=concurrency) as ex:
         futures = {ex.submit(_build_one, p): p for p in pages_list}
         for future in as_completed(futures):
-            kind, _ = future.result()
+            kind, detail = future.result()
             if kind == "ok":
                 built += 1
             else:
                 errors += 1
+                error_lines.append(detail)
             done = built + errors
             if on_progress and (done % log_interval == 0 or done == total):
                 elapsed = time.time() - t_start
@@ -112,6 +134,7 @@ def build(
         pages_built=built,
         pages_errors=errors,
         elapsed_seconds=time.time() - t_start,
+        errors=sorted(error_lines),
     )
 
 

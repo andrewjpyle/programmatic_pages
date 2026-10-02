@@ -16,7 +16,7 @@ import importlib
 import os
 from pathlib import Path
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.template import Template
 from django.template.loader import get_template
 
@@ -141,7 +141,9 @@ class Command(BaseCommand):
             record.build_time_seconds = round(result.elapsed_seconds, 1)
             record.finished_at = tz.now()
             if result.pages_errors > 0:
-                record.error_message = f"{result.pages_errors} pages failed to build"
+                record.error_message = "\n".join(
+                    [f"{result.pages_errors} pages failed to build"] + result.errors
+                )
             record.save()
 
             rate = (
@@ -166,6 +168,19 @@ class Command(BaseCommand):
             record.finished_at = tz.now()
             record.save()
             raise
+
+        if result.pages_errors:
+            # Exit non-zero so a CI deploy step stops instead of shipping a partial build.
+            shown = result.errors[:20]
+            self.stderr.write("\nFailed pages:")
+            for line in shown:
+                self.stderr.write(f"  {line}")
+            if len(result.errors) > len(shown):
+                self.stderr.write(f"  ... and {len(result.errors) - len(shown)} more")
+            raise CommandError(
+                f"{result.pages_errors} of {result.pages_built + result.pages_errors} "
+                f"pages failed to build (Build ID {record.id})"
+            )
 
 
 def _load_adapter(dotted_path: str) -> PageAdapter:

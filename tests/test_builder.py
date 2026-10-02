@@ -75,18 +75,19 @@ def test_build_writes_all_pages(tmp_path, project, template):
         assert os.path.isfile(os.path.join(out, "items", str(i), "index.html"))
 
 
-def test_build_continues_past_errors(tmp_path, project):
-    # Default Django swallows missing attrs; this still proves the loop returns cleanly.
-    bad_template = Template("{{ does_not_exist.attribute }}")
+def test_build_continues_past_errors_and_says_why(tmp_path, project, template):
     pages = [
+        RenderablePage(url_path="ok/", title="OK", meta_description="", h1="OK", body_html=""),
         RenderablePage(
-            url_path="ok/",
-            title="OK",
-            meta_description="",
-            h1="OK",
-            body_html="",
+            url_path="../outside/", title="Bad", meta_description="", h1="Bad", body_html=""
         ),
     ]
-    # The builder should at least produce a result without raising.
-    result = build(pages, project, bad_template, str(tmp_path), concurrency=1)
-    assert result.pages_built + result.pages_errors == 1
+    out = tmp_path / "build"
+    result = build(pages, project, template, str(out), concurrency=1)
+    assert result.pages_built == 1
+    assert result.pages_errors == 1
+    assert (out / "ok" / "index.html").is_file()
+    assert not (tmp_path / "outside").exists()
+    assert len(result.errors) == 1
+    assert result.errors[0].startswith("../outside/: ")
+    assert "outside the output directory" in result.errors[0]

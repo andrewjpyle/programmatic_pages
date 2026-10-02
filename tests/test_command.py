@@ -125,3 +125,40 @@ def test_pagebuild_record_created(populated_pages, tmp_path, db):
     assert record.pages_built == 2
     assert record.pages_errors == 0
     assert record.finished_at is not None
+
+
+def test_one_page_per_published_record_and_canonical_matches_location(populated_pages, tmp_path):
+    import re
+
+    from programmatic_pages.models import Page
+
+    call_command("build_static_pages", "--project", "demo", "--output-dir", str(tmp_path))
+    files = sorted(tmp_path.rglob("index.html"))
+    assert len(files) == Page.objects.filter(project_key="demo", status="published").count()
+    for f in files:
+        rel = f.parent.relative_to(tmp_path).as_posix()
+        canonical = re.search(r'<link rel="canonical" href="([^"]+)"', f.read_text()).group(1)
+        assert canonical == f"https://demo.example.com/{rel}/"
+
+
+def test_failed_pages_exit_nonzero_and_are_named(populated_pages, tmp_path, capsys):
+    from django.core.management.base import CommandError
+
+    from programmatic_pages.models import Page, PageBuild
+
+    Page.objects.create(
+        project_key="demo",
+        url_path="../escape/",
+        title="Escape",
+        h1="Escape",
+        status="published",
+    )
+    out = tmp_path / "build"
+    with pytest.raises(CommandError, match="1 of 3 pages failed"):
+        call_command("build_static_pages", "--project", "demo", "--output-dir", str(out))
+    assert "../escape/: " in capsys.readouterr().err
+    assert not (tmp_path / "escape").exists()
+    assert (out / "zip" / "10001" / "index.html").is_file()  # good pages still built
+    record = PageBuild.objects.latest("started_at")
+    assert record.status == "failed"
+    assert "../escape/" in record.error_message
