@@ -48,6 +48,8 @@ packages = ["src/programmatic_pages"]
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+# README graphics tooling (vendored render kit + build script), not part of the package.
+extend-exclude = ["docs/assets/src"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]

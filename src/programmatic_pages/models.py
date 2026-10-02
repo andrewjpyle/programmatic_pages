@@ -32,7 +32,7 @@ class PageBuild(models.Model):
         verbose_name = "Page Build"
 
     def __str__(self) -> str:
-        return f"{self.project_key} — {self.pages_built} pages ({self.status})"
+        return f"{self.project_key}: {self.pages_built} pages ({self.status})"
 
 
 class Page(models.Model):

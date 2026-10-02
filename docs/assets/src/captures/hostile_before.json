@@ -1,0 +1,16 @@
+{
+  "name": "hostile_before",
+  "command": [
+    "python",
+    "examples/hostile_record.py"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-02T01:28:41+00:00",
+  "commit": "9f21963e2a8e50892fef638364e8346bb352f85e",
+  "line_count": 5,
+  "env_passed": [
+    "PYTHONPATH"
+  ],
+  "note": "Run in a worktree of the original main commit 9f21963 with PYTHONPATH=src, so the pre-fix package is imported. examples/hostile_record.py copied in unchanged from this branch as the harness.",
+  "output": "<meta name=\"description\" content=\"Has a &amp;quot;quoted&amp;quot; pond &amp; a dock.\">\n<script type=\"application/ld+json\">[{\"@context\": \"https://schema.org\", \"@type\": \"Park\", \"name\": \"Evil Park</script><script>alert(\\\"pwned\\\")</script>\", \"url\": \"https://parks.example.com/parks/evil/\", \"description\": \"Has a \\\"quoted\\\" pond & a dock.\"}]</script>\nscript elements a browser would see: 2\n  application/ld+json: NOT valid JSON-LD, body starts '[{\"@context\": \"https://schema.org\", \"@ty'\n  (classic script): NOT valid JSON-LD, body starts 'alert(\\\\\"pwned\\\\\")'\n"
+}

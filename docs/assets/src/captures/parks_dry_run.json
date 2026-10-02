@@ -1,0 +1,22 @@
+{
+  "name": "parks_dry_run",
+  "command": [
+    "python",
+    "manage.py",
+    "build_static_pages",
+    "--project",
+    "parks",
+    "--adapter",
+    "parks.adapters.ParkPageAdapter",
+    "--output-dir",
+    "./build",
+    "--dry-run"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-02T01:25:15+00:00",
+  "commit": "60fd4423edf8076423ccf42e5c2cffa0ab355bbb",
+  "line_count": 13,
+  "env_passed": [],
+  "note": "",
+  "output": "\nProject: Example County Parks (parks)\nBase URL: https://parks.example.com\nOutput: ./build\n\nPages matching filters: 5\n\nBreakdown:\n  Larkspur Falls: 2\n  Old Mill: 2\n  Hartwell: 1\n\nDRY RUN: no files written\n"
+}

@@ -1,4 +1,4 @@
-"""Default adapter — implements PageAdapter against the bundled `Page` model.
+"""Default adapter: implements PageAdapter against the bundled `Page` model.
 
 Use this if you don't have your own page model. If you do, write your own
 adapter against your model and pass `--adapter` to the management command.

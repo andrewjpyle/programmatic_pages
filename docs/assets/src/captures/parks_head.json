@@ -1,0 +1,16 @@
+{
+  "name": "parks_head",
+  "command": [
+    "head",
+    "-n",
+    "20",
+    "build/parks/fox-and-heron/index.html"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-02T01:25:15+00:00",
+  "commit": "60fd4423edf8076423ccf42e5c2cffa0ab355bbb",
+  "line_count": 20,
+  "env_passed": [],
+  "note": "",
+  "output": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Fox &amp; Heron Commons, Old Mill: trails, size and history</title>\n  <meta name=\"description\" content=\"A restored wet meadow around the &quot;Big Pond&quot;, with a boardwalk and a bird blind on the north shore.\">\n  <link rel=\"canonical\" href=\"https://parks.example.com/parks/fox-and-heron/\">\n\n  <meta property=\"og:title\" content=\"Fox &amp; Heron Commons, Old Mill: trails, size and history\">\n  <meta property=\"og:description\" content=\"A restored wet meadow around the &quot;Big Pond&quot;, with a boardwalk and a bird blind on the north shore.\">\n  <meta property=\"og:url\" content=\"https://parks.example.com/parks/fox-and-heron/\">\n  <meta property=\"og:type\" content=\"article\">\n  <meta property=\"og:site_name\" content=\"Example County Parks\">\n\n  <meta name=\"twitter:card\" content=\"summary\">\n  <meta name=\"twitter:title\" content=\"Fox &amp; Heron Commons, Old Mill: trails, size and history\">\n  <meta name=\"twitter:description\" content=\"A restored wet meadow around the &quot;Big Pond&quot;, with a boardwalk and a bird blind on the north shore.\">\n\n  <script type=\"application/ld+json\">[{\"@context\": \"https://schema.org\", \"@type\": \"Park\", \"name\": \"Fox \\u0026 Heron Commons\", \"url\": \"https://parks.example.com/parks/fox-and-heron/\", \"description\": \"A restored wet meadow around the \\\"Big Pond\\\", with a boardwalk and a bird blind on the north shore.\", \"address\": {\"@type\": \"PostalAddress\", \"addressLocality\": \"Old Mill\"}, \"foundingDate\": \"1994\"}, {\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://parks.example.com/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Parks\", \"item\": \"https://parks.example.com/parks/\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Fox \\u0026 Heron Commons\"}]}]</script>\n"
+}

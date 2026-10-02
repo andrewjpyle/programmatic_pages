@@ -1,0 +1,21 @@
+{
+  "name": "parks_build",
+  "command": [
+    "python",
+    "manage.py",
+    "build_static_pages",
+    "--project",
+    "parks",
+    "--adapter",
+    "parks.adapters.ParkPageAdapter",
+    "--output-dir",
+    "./build"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-02T01:25:15+00:00",
+  "commit": "60fd4423edf8076423ccf42e5c2cffa0ab355bbb",
+  "line_count": 12,
+  "env_passed": [],
+  "note": "",
+  "output": "\nProject: Example County Parks (parks)\nBase URL: https://parks.example.com\nOutput: ./build\n  [5] built=5 errors=0 (2210 pages/s)\n\n==================================================\n  Built 5 pages (0 errors) in 0.0s\n  Output: ./build\n  Manifest: ./build/manifest.json\n  Rate: 2146 pages/s\n  Build ID: 1\n"
+}

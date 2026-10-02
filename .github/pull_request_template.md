@@ -2,7 +2,7 @@
 Thanks for the PR! A few quick checks before you submit:
 
 - For non-trivial changes, please make sure there's a related issue.
-- Run `ruff check .` and `pytest -q` locally — both should pass.
+- Run `ruff check .` and `pytest -q` locally; both should pass.
 - One concern per PR. Smaller is easier to review.
 -->
 

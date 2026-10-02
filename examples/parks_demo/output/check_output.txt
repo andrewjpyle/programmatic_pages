@@ -1,0 +1,8 @@
+ok    /parks/cinder-ridge/  canonical == JSON-LD url, Park, 1 script
+ok    /parks/fox-and-heron/  canonical == JSON-LD url, Park, 1 script
+ok    /parks/maple-hollow/  canonical == JSON-LD url, Park, 1 script
+skip  /parks/north-annex/  (no page: not enough data)
+skip  /parks/pine-knob/  (no page: not enough data)
+ok    /parks/quarry-lake/  canonical == JSON-LD url, Park, 1 script
+ok    /parks/willow-bend/  canonical == JSON-LD url, Park, 1 script
+5 pages for 7 parks, 0 problems

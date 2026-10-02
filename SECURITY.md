@@ -29,11 +29,11 @@ In scope:
 
 - The Python package itself (`src/programmatic_pages/`)
 - The management command's argument parsing
-- The default Django template (`default.html`) — XSS, injection, etc.
+- The default Django template (`default.html`): XSS, injection, etc.
 - Schema.org JSON-LD output
 
 Out of scope:
 
-- Vulnerabilities in user-supplied templates, adapters, or page bodies — those are the consumer's responsibility
+- Vulnerabilities in user-supplied templates, adapters, or page bodies; those are the consumer's responsibility
 - Issues only reproducible with non-default Django settings that disable safe defaults (e.g., turning off auto-escape)
 - Vulnerabilities in transitive dependencies that don't affect this package's surface
